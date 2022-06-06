@@ -100,9 +100,13 @@ public class Empresa {
 	
 	public void asignarDestino(String identificacion, String Destino) {	
 		if(!TransportesLista.containsKey(identificacion)) throw new RuntimeException("La Matricula no existe");
-		if(!Destinos.containsKey(Destino)) throw new RuntimeException("El destino no existe! , Agrega el destino antes de asignarlo");	
-		//Tengo que sacar de la lista de tranporte , el tranporte que dice la id.
-		TransportesLista.get(identificacion).setDestino(Destino);	
+		if(!Destinos.containsKey(Destino)) throw new RuntimeException("El destino no existe! , Agrega el destino antes de asignarlo");
+		if (Destinos.get(Destino).byteValue() > 500)
+			if (TransportesLista.get(identificacion) instanceof MegaTrailer)
+				TransportesLista.get(identificacion).setDestino(Destino);	
+			else 
+				throw new RuntimeException("Error: Los Trailer y Fletes no hacen mas de 500KM! , para este tipo de viajes se utiliza los MegaTrailer");
+		TransportesLista.get(identificacion).setDestino(Destino);
 	}
 	
 	public double cargarTransporte(String matricula) { // falta pensar
@@ -117,13 +121,14 @@ public class Empresa {
 		if (!TransportesLista.get(matricula).isEquipoRefrigeracion())
 			for (Paquete paquete: DepositoComun.values() ) { // Recorre todos los paquetes del deposito de la empresa		
 				if ( paquete.getDestino() == TransportesLista.get(matricula).getDestino()) { // Una vez que encuentre un paquete 
-					if (volumen >= TransportesLista.get(matricula).getVolumenMax() || peso >= TransportesLista.get(matricula).getPesoMax()) {
+					if (volumen > TransportesLista.get(matricula).getVolumenMax() || peso > TransportesLista.get(matricula).getPesoMax()) {
 						return volumen;
 					}
 					else  {  // Si el paquete no necesita refrigeracion y el tranporte no tiene ref
 						TransportesLista.get(matricula).AgregarPaqueteTranporte(paquete.getCodigoPaquete(), paquete); //Agrega el pack al deposito del Transporte
 						PaquetesEliminados.add(paquete.getCodigoPaquete());//Remueve el Pack del deposito de la empresa.
 						this.capacidadDeCadaDeposito=(int) (this.capacidadDeCadaDeposito+paquete.getVolumen());
+						System.out.println(volumen);
 						volumen=volumen+paquete.getVolumen();
 						peso=peso+paquete.getPeso();
 					}

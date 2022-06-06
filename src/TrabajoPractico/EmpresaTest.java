@@ -98,14 +98,14 @@ public class EmpresaTest {
 		
 		emp.agregarDestino("Parana", 30);
 		
-		emp.agregarFlete("AB271NE", 8000, 40, 3, 2, 200);
+		emp.agregarFlete("AB271NE", 40, 6000, 3, 2, 200);
 		emp.asignarDestino("AB271NE", "Parana");
 		emp.incorporarPaquete("Parana",6453645, 100, 5, false);
-		emp.incorporarPaquete("Parana", 222222222,400, 12, false);
+		emp.incorporarPaquete("Parana", 22222,400, 12, false);
 		emp.incorporarPaquete("Parana", 121312,50, 8, false);
 		emp.cargarTransporte("AB271NE");
 
-		emp.agregarFlete("AD235NP", 6000, 30, 2, 1, 100);
+		emp.agregarFlete("AD235NP", 30, 6000, 2, 1, 100);
 		emp.asignarDestino("AD235NP", "Parana");
 		emp.incorporarPaquete("Parana", 908675490,400, 12, false);
 		emp.incorporarPaquete("Parana", 654065,50, 8, false);
