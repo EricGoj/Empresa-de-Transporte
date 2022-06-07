@@ -206,9 +206,7 @@ public class Empresa {
 	}
 	
 	public String TipoDeTransporte(String Matricula) {
-
 		Transporte Transporte=TransportesLista.get(Matricula);
-
 		if ( Transporte instanceof TrailerComun) {
 			return "Trailer Comun";		
 		}
@@ -223,13 +221,21 @@ public class Empresa {
 
 
 	public String obtenerTransporteIgual(String matricula) {		
-		Transporte Transporte=TransportesLista.get(matricula);	
-		for (Transporte ListaTrans: TransportesLista.values()) {	
-			if (Transporte.equals(ListaTrans)){
-				return ListaTrans.getNumIdentificacion();
-			}	
+//		Transporte Transporte=TransportesLista.get(matricula);	
+//		for (Transporte ListaTrans: TransportesLista.values()) {	
+//			if (Transporte.equals(ListaTrans)){
+//				return ListaTrans.getNumIdentificacion();
+//			}	
+//		}
+//		return "No existe Transporte Igual";
+//	}
+		Transporte T=TransportesLista.get(matricula);
+		for (Transporte ListaTrans: TransportesLista.values()) {
+			if (ListaTrans.sizedepot()==T.sizedepot() && ListaTrans.getDestino() == T.getDestino() &&
+				TipoDeTransporte(ListaTrans.getNumIdentificacion()) == TipoDeTransporte(T.getNumIdentificacion()))
+				return ListaTrans.getNumIdentificacion();	 
 		}
-		return "No existe Transporte Igual";
+		return null;
 	}
 
 }

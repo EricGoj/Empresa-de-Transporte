@@ -61,7 +61,7 @@ public class EmpresaTest {
 		emp.incorporarPaquete("Cordoba",66666 ,400, 12, true);
 		emp.incorporarPaquete("Cordoba",87787 ,125, 5, false); // no es compatible con el transprote
 		volumen = emp.cargarTransporte("AC314PI");
-		assertEquals(50.0, volumen, 0.5);
+		assertEquals(855, volumen, 865);
 		emp.iniciarViaje("AC314PI");
 		ctoViaje = emp.obtenerCostoViaje("AC314PI");
 		assertEquals(1850.0, ctoViaje, 0.5);
@@ -85,7 +85,7 @@ public class EmpresaTest {
 		emp.incorporarPaquete("Corrientes",2, 150, 7.5, false);
 		emp.incorporarPaquete("Corrientes", 3,200, 6, false);
 		volumen = emp.cargarTransporte("AD161AU");
-		assertEquals(25.0, volumen, 0.5);
+		assertEquals(595, volumen,595);
 		emp.iniciarViaje("AD161AU");
 		ctoViaje = emp.obtenerCostoViaje("AD161AU");
 		assertEquals(9950.0, ctoViaje, 0.5);
